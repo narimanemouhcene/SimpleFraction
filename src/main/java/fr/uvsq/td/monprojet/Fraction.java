@@ -1,6 +1,6 @@
 package fr.uvsq.td.monprojet;
 
-public class Fraction extends Number {
+public class Fraction extends Number implements Comparable<Fraction> {
      private int numerateur;
     private int denominateur;
 
@@ -34,6 +34,7 @@ public class Fraction extends Number {
     public int getDenominateur() {
         return denominateur;
     }
+    
 public Fraction add(Fraction other) {
     // (a/b) + (c/d) = (ad + bc) / (bd)
     int num = this.numerateur * other.denominateur + other.numerateur * this.denominateur;
@@ -62,6 +63,14 @@ public long longValue() {
 public float floatValue() {
     return (float) doubleValue();
 }
+ @Override
+    public int compareTo(Fraction other) {
+        // On compare les fractions en les convertissant en double
+        double diff = this.doubleValue() - other.doubleValue();
+        if (diff > 0) return 1;
+        else if (diff < 0) return -1;
+        else return 0;
+    }
 
 
 }
